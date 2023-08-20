@@ -1,37 +1,64 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
+import authenticate from './authenticate'; // Update the path accordingly
 
-export default function SignUpForm({ setToken }) {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
+const COHORT_NAME = "2306-ghp-et-web-ft-sf";
+const BASE_URL = `https://strangers-things.herokuapp.com/api/${COHORT_NAME}`;
 
-  async function handleSubmit(event) {
+const SignUpForm = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+
+  const registerUser = async () => {
+    try {
+      const response = await fetch(
+        `${BASE_URL}/users/register`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          user: {
+            username,
+            password
+          }
+        })
+      });
+      const result = await response.json();
+      return result;
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    try {
-      const response = await fetch("https://strangers-things.herokuapp.com/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username, password }),
-      });
-      console.log(response)
-      if (response.ok) {
-        const result = await response.json();
-        setToken(result.token);
+    const registrationResult = await registerUser();
+
+    if (registrationResult) {
+      if (registrationResult.success) {
+        setError('');
+
+        // Now, attempt to authenticate the user after successful registration
+        const authenticationResult = await authenticate(username, password);
+
+        if (authenticationResult.success) {
+          console.log('User registered and authenticated successfully:', authenticationResult);
+          // Handle successful registration and authentication here
+        } else {
+          setError(authenticationResult.error.message);
+        }
       } else {
-        setError("Login failed. Please check your credentials and try again.");
+        setError(registrationResult.error.message);
       }
-    } catch (error) {
-      setError("An error occurred. Please try again later.");
     }
-  }
+  };
 
   return (
     <div>
-      <h2>Log In</h2>
-      {error && <p>Error: {error}</p>}
+      <h2>Sign Up</h2>
+      {error && <p>{error}</p>}
       <form onSubmit={handleSubmit}>
         <label>
           Username:
@@ -51,9 +78,16 @@ export default function SignUpForm({ setToken }) {
           />
         </label>
         <br />
-        <button type="submit">Log In</button>
+        <button type="submit">Sign Up</button>
       </form>
     </div>
   );
-}
+};
+
+export default SignUpForm;
+
+
+
+
+
 

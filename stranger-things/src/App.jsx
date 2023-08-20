@@ -8,8 +8,12 @@ import MainSec from "./components/MainSec";
 // import Authenticate from "./components/Authenticate";
 
 function App() {
+  // const [token, setToken] = useState(null);
+
   return (
     <div id="container">
+      {/* <SignUpForm setToken={setToken} />
+      <Authenticate token={token} /> */}
       <Nav></Nav>
       <MainSec></MainSec>
     </div>
