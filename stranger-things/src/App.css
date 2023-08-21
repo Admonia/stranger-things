@@ -43,39 +43,35 @@
 
 
 
-/* .all-posts-container {
+#footer {
+  background-color: #0a0315ba;
+  color: #05051e;
+  text-align: center;
+  padding: 20px;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 
-.post-container {
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin: 10px;
-  width: 300px;
+#footer a {
+  text-decoration: none;
+  color: #33bf1db6;
+  margin: 0 10px;
+  padding: 10px 20px;
+  border: 2px solid #89f022;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-.post-buttons {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
+#footer a:hover {
+  background-color: #43e51bc0;
+  color: #333;
 }
 
-.edit-button,
-.delete-button {
-  padding: 5px 10px;
-  border: none;
-  background-color: #007bff;
-  color: white;
-  cursor: pointer;
+body {
+  background-image: url('https://cdn.pixabay.com/photo/2015/04/25/23/32/wormhole-739872_1280.png');
+  background-size: cover; /* Adjust how the image is displayed */
+  background-repeat: no-repeat; /* Prevent the image from repeating */
+  background-attachment: fixed; /* Keep the image fixed while scrolling */
+  /* Add any other styles you need */
 }
-
-.edit-button {
-  background-color: #28a745;
-}
-
-.delete-button {
-  background-color: #dc3545;
-}
- */

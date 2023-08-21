@@ -1,4 +1,66 @@
-/* AllPosts.css */
+/* .post-container {
+  border: 1px solid #93fe0f;
+  padding: 20px;
+  margin: 10px 0;
+  background-color: #161212;
+}
+
+.post-container h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.post-container p {
+  margin: 10px 0;
+}
+
+.post-buttons button {
+  margin-right: 10px;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+}
+
+
+.edit-button {
+  background-color: #28aa28;
+  color: #171414;
+}
+
+.delete-button {
+  background-color: #28aa28;
+  color: #100606;
+}
+
+.add-post-button {
+  background-color: #4caf50;
+  color: #120505;
+}
+
+.editing-container {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin: 10px 0;
+  background-color: #f5f5f5;
+}
+
+.editing-container input,
+.editing-container textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.editing-container button {
+  background-color: #16a226;
+  color: #fff;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+} */
+
 .all-posts-container {
   display: flex;
   flex-direction: column;
@@ -7,15 +69,16 @@
 }
 
 .post-container {
-  border: 1px solid #ccc;
+  border: 1px solid #7bee15e7;
   padding: 10px;
   margin: 10px 0;
   width: 70%;
   transition: background-color 0.2s;
+  background-color: #0f0c0cae;
 }
 
 .post-container:hover {
-  background-color: #bd17eb6e;
+  background-color: #8b20e89e;
 }
 
 .post-buttons {
@@ -27,7 +90,7 @@
 
 .edit-button,
 .delete-button {
-  background-color: #007bff;
+  background-color: #21d121cc;
   color: #fff;
   border: none;
   padding: 5px 10px;
@@ -37,7 +100,7 @@
 
 .edit-button:hover,
 .delete-button:hover {
-  background-color: #0056b3;
+  background-color: #a31eeb9b;
 }
 
 .add-post-button {
@@ -55,37 +118,3 @@
 
 
 /* AllPosts.css
-.all-posts-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-  }
-  
-  .post-container {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin: 10px 0;
-    width: 70%;
-  }
-  
-  .post-buttons {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .edit-button,
-  .delete-button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-  }
-  
-  .edit-button:hover,
-  .delete-button:hover {
-    background-color: #0056b3;
-  }
-   */

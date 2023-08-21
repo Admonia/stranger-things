@@ -129,69 +129,66 @@ const handleAddNewPost = async () => {
   }
 };
 
-  return (
-    <div className="all-posts-container">
-      <div>
-        <label>
-          Search:{" "}
-          <input
-            type="text"
-            placeholder="search"
-            value={searchParam}
-            onChange={(e) => setSearchParam(e.target.value.toLowerCase())}
-          />
-        </label>
-        <button onClick={handleSearch}>Search</button>
-      </div>
-      {error && <p>{error}</p>}
-      {postsToDisplay.map((post) => (
-        <div key={post._id} className="post-container">
-          {post.isEditing ? (
-            <div>
-              <input
-                value={post.title}
-                onChange={(e) => handleUpdate(post._id, { title: e.target.value })}
-              />
-              <textarea
-                value={post.description}
-                onChange={(e) =>
-                  handleUpdate(post._id, { description: e.target.value })
-                }
-              />
-              <input
-                value={post.price}
-                onChange={(e) => handleUpdate(post._id, { price: e.target.value })}
-              />
-              <button onClick={() => handleUpdate(post._id, { isEditing: false })}>
-                Save
+return (
+  <div className="all-posts-container">
+    <div>
+      <label>
+        Search:{" "}
+        <input
+          type="text"
+          placeholder="search"
+          value={searchParam}
+          onChange={(e) => setSearchParam(e.target.value.toLowerCase())}
+        />
+      </label>
+      <button onClick={handleSearch}>Search</button>
+    </div>
+    {error && <p>{error}</p>}
+    {postsToDisplay.map((post) => (
+      <div key={post._id} className="post-container">
+        {post.isEditing ? (
+          <div className="editing-container">
+            <input
+              value={post.title}
+              onChange={(e) => handleUpdate(post._id, { title: e.target.value })}
+            />
+            <textarea
+              value={post.description}
+              onChange={(e) => handleUpdate(post._id, { description: e.target.value })}
+            />
+            <input
+              value={post.price}
+              onChange={(e) => handleUpdate(post._id, { price: e.target.value })}
+            />
+            <button onClick={() => handleUpdate(post._id, { isEditing: false })}>
+              Save
+            </button>
+          </div>
+        ) : (
+          <div>
+            <h2>{post.title}</h2>
+            <p>{post.description}</p>
+            <p>{post.price}</p>
+            <p>Posted by: {post.author.username}</p>
+            <div className="post-buttons">
+              <button className="edit-button" onClick={() => handleEdit(post._id)}>
+                Edit
+              </button>
+              <button className="delete-button" onClick={() => handleDelete(post._id)}>
+                Delete
               </button>
             </div>
-          ) : (
-            <div>
-              <h2>{post.title}</h2>
-              <p>{post.description}</p>
-              <p>{post.price}</p>
-              <p>Posted by: {post.author.username}</p>
-              <div className="post-buttons">
-                <button className="edit-button" onClick={() => handleEdit(post._id)}>
-                  Edit
-                </button>
-                <button className="delete-button" onClick={() => handleDelete(post._id)}>
-                  Delete
-                </button>
-              </div>
-            </div>
-          )}
-        </div>
-      ))}
-      <div className="post-container">
-        <h2>Create New Post</h2>
-        <button className="add-post-button" onClick={handleAddNewPost}>
-          Add Post
-        </button>
+          </div>
+        )}
       </div>
+    ))}
+    <div className="post-container">
+      <h2>Create New Post</h2>
+      <button className="add-post-button" onClick={handleAddNewPost}>
+        Add Post
+      </button>
     </div>
-  );
-}
-
+  </div>
+);
+        }
 

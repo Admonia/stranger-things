@@ -7,6 +7,7 @@ const LoginForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [loginSuccess, setLoginSuccess] = useState(false);
 
   const login = async () => {
     try {
@@ -38,10 +39,10 @@ const LoginForm = () => {
     if (loginResult) {
       if (loginResult.success) {
         setError('');
-        console.log('User logged in successfully:', loginResult);
-        // Handle successful login here
+        setLoginSuccess(true);
       } else {
         setError(loginResult.error.message);
+        setLoginSuccess(false);
       }
     }
   };
@@ -50,6 +51,7 @@ const LoginForm = () => {
     <div>
       <h2>Login</h2>
       {error && <p>{error}</p>}
+      {loginSuccess && <p>Login is a success!</p>}
       <form onSubmit={handleLoginSubmit}>
         <label>
           Username:
@@ -79,54 +81,3 @@ export default LoginForm;
 
 
 
-// import React, { useState } from 'react';
-// import authenticate from './authenticate'; // Update the path accordingly
-
-// function LoginForm({ setToken }) {
-//     const [username, setUsername] = useState('');
-//     const [password, setPassword] = useState('');
-//     const [error, setError] = useState('');
-
-//     const handleLogin = async () => {
-//         try {
-//             const authenticationResult = await authenticate(username, password);
-
-//             if (authenticationResult.success) {
-//                 setError('');
-//                 setToken(authenticationResult.token); // Set the token to log the user in
-//             } else {
-//                 setError(authenticationResult.error.message);
-//             }
-//         } catch (err) {
-//             console.error(err);
-//         }
-//     };
-
-//     return (
-//         <div>
-//             <h2>Log In</h2>
-//             {error && <p>{error}</p>}
-//             <form onSubmit={(e) => { e.preventDefault(); handleLogin(); } }>
-//                 <label>
-//                     Username:
-//                     <input
-//                         type="text"
-//                         value={username}
-//                         onChange={(e) => setUsername(e.target.value)} />
-//                 </label>
-//                 <br />
-//                 <label>
-//                     Password:
-//                     <input
-//                         type="password"
-//                         value={password}
-//                         onChange={(e) => setPassword(e.target.value)} />
-//                 </label>
-//                 <br />
-//                 <button type="submit">Log In</button>
-//             </form>
-//         </div>
-//     );
-// }
-
-// export default LoginForm;
