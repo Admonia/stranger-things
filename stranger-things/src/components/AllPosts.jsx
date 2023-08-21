@@ -37,71 +37,67 @@ export default function AllPosts() {
     setPostsToDisplay(filteredPosts);
   };
 
-  const handleEdit = async (postId) => {
-    const updatedContent = {
-      title: "Updated Title", // Update with the new title
-      description: "Updated Description", // Update with the new description
-      price: "$500.00", // Update with the new price
-      location: "Updated Location", // Update with the new location
-      willDeliver: false, // Update with the new delivery status
-    };
-
-    try {
-      const updatedPost = await updatePost(postId, updatedContent);
+  
+  const handleEdit = (postId) => {
+    const postToEdit = postsToDisplay.find((post) => post._id === postId);
+    if (postToEdit) {
       const updatedPosts = postsToDisplay.map((post) =>
-        post._id === postId ? { ...post, ...updatedPost.data.post } : post
+        post._id === postId ? { ...post, isEditing: true } : post
       );
       setPostsToDisplay(updatedPosts);
-    } catch (error) {
-      console.error(error);
     }
   };
-
-
-  // const handleEdit = (postId) => {
-  //   const postToEdit = postsToDisplay.find((post) => post._id === postId);
-  //   if (postToEdit) {
-  //     const updatedPosts = postsToDisplay.map((post) =>
-  //       post._id === postId ? { ...post, isEditing: true } : post
-  //     );
-  //     setPostsToDisplay(updatedPosts);
-  //   }
-  // };
-  const handleUpdate = (postId, updatedContent) => {
-    const updatedPosts = postsToDisplay.map((post) =>
-      post._id === postId
-        ? { ...post, ...updatedContent, isEditing: false }
-        : post
-    );
-    setPostsToDisplay(updatedPosts);
-  };
+   
+  const handleUpdate = async (postId, updatedContent) => {
+    try {
+      const headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      headers.append('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGUyNjgwMjJjMjc1MDAwMTQ4YzJlNTUiLCJ1c2VybmFtZSI6IkFkbW9uaWEiLCJpYXQiOjE2OTI2NDI0NTF9.E9GW6VwhUtPtXD16YTp4SGRP8kiSvT3cYxI6TQ-k3MI'); // Replace with your auth token
   
-  // const handleUpdate = (postId, updatedContent) => {
-  //   const updatedPosts = postsToDisplay.map((post) =>
-  //     post._id === postId
-  //       ? { ...post, ...updatedContent, isEditing: false }
-  //       : post
-  //   );
-  //   setPostsToDisplay(updatedPosts);
-  // };
-
+      const response = await fetch(`${BASE_URL}/posts/${postId}`, {
+        method: 'PATCH',
+        headers: headers,
+        body: JSON.stringify({ post: updatedContent }),
+      });
+  
+      const result = await response.json();
+      if (result.success) {
+        // Update the postsToDisplay with the updated post
+        const updatedPosts = postsToDisplay.map((post) =>
+          post._id === postId ? { ...post, ...updatedContent, isEditing: false } : post
+        );
+        setPostsToDisplay(updatedPosts);
+      } else {
+        console.error('Error updating post:', result.error.message);
+      }
+    } catch (err) {
+      console.error('An error occurred while updating post:', err);
+    }
+  };
+    
   const handleDelete = async (postId) => {
     try {
+      const headers = new Headers();
+      headers.append('Authorization', AUTH_TOKEN); // Add your authentication token here
+  
       const response = await fetch(`${BASE_URL}/posts/${postId}`, {
-        method: "DELETE",
+        method: 'DELETE',
+        headers: headers,
       });
-      const data = await response.json();
-      if (data.success) {
+  
+      const result = await response.json();
+      if (result.success) {
         const updatedPosts = postsToDisplay.filter((post) => post._id !== postId);
         setPostsToDisplay(updatedPosts);
       } else {
-        console.error("Error deleting post:", data.error.message);
+        console.error('Error deleting post:', result.error.message);
       }
     } catch (error) {
-      console.error("An error occurred while deleting post:", error);
+      console.error('An error occurred while deleting post:', error);
     }
   };
 
+  
 
 // const AUTH_TOKEN = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGUyNjgwMjJjMjc1MDAwMTQ4YzJlNTUiLCJ1c2VybmFtZSI6IkFkbW9uaWEiLCJpYXQiOjE2OTI2NDI0NTF9.E9GW6VwhUtPtXD16YTp4SGRP8kiSvT3cYxI6TQ-k3MI';
 
