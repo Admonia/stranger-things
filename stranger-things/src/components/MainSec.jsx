@@ -4,6 +4,7 @@ import AllPosts from "./AllPosts"; // Import the AllPosts component
 import SignUpForm from "./SignUpForm";
 import Home from "./Home";
 import LoginForm from "./LoginForm"; // Adjust the path as needed
+// import UserData from './UserData';
 // import Authenticate from "./Authenticate";
 
 function MainSec() {

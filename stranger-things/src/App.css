@@ -43,29 +43,39 @@
 
 
 
-/* .post-container {
-  margin: 20px;
-  padding: 20px;
+/* .all-posts-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.post-container {
   border: 1px solid #ccc;
-  background-color: #f9f9f9;
+  padding: 10px;
+  margin: 10px;
+  width: 300px;
 }
 
-.post-title {
-  font-size: 24px;
-  margin-bottom: 10px;
+.post-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
 }
 
-.post-description {
-  font-size: 18px;
-  margin-bottom: 10px;
+.edit-button,
+.delete-button {
+  padding: 5px 10px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
 }
 
-.post-price {
-  font-size: 16px;
-  color: #009688;
+.edit-button {
+  background-color: #28a745;
 }
 
-.error-message {
-  color: #f44336;
-  font-size: 18px;
-} */
+.delete-button {
+  background-color: #dc3545;
+}
+ */

@@ -1,0 +1,91 @@
+/* AllPosts.css */
+.all-posts-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.post-container {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px 0;
+  width: 70%;
+  transition: background-color 0.2s;
+}
+
+.post-container:hover {
+  background-color: #bd17eb6e;
+}
+
+.post-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.edit-button,
+.delete-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.edit-button:hover,
+.delete-button:hover {
+  background-color: #0056b3;
+}
+
+.add-post-button {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.add-post-button:hover {
+  background-color: #218838;
+}
+
+
+/* AllPosts.css
+.all-posts-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .post-container {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px 0;
+    width: 70%;
+  }
+  
+  .post-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .edit-button,
+  .delete-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .edit-button:hover,
+  .delete-button:hover {
+    background-color: #0056b3;
+  }
+   */
